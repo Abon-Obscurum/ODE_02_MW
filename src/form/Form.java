@@ -1,10 +1,11 @@
-package fhtw.form;
+package form;
+
+import java.util.Locale;
 
 /**
- * Interface for geometric shapes.
+ * Abstract base class for geometric shapes.
  */
-
-public interface Form {
+public abstract class Form {
 
     /**
      * Calculates area of shape.
@@ -14,12 +15,32 @@ public interface Form {
 
     /**
      * Calculates perimeter of shape.
-     * @return perimerter in mm
+     * @return perimeter in mm
      */
     public abstract double umfang();
 
     /**
-     * Prints area, perimeter and the dimensions of the shape.
+     * Builds the info string of the shape.
+     * Format: (Klassenname): (interne Var), (Fläche), (Fläche int in HEX), (Umfang)
+     * @return info string of the shape
      */
-    public abstract void info();
+    public abstract String info();
+
+    /**
+     * Area truncated to int, converted to hexadecimal.
+     * Integer.toHexString() only takes an int, hence the cast.
+     * @return area as hex string
+     */
+    protected String flaecheAlsHex() {
+        return Integer.toHexString((int) flaeche());
+    }
+
+    /**
+     * Formats a double with 2 decimal places
+     * @param wert value to format
+     * @return formatted value
+     */
+    protected double gerundet(double wert) {
+        return Math.round(wert * 100) / 100.00;
+    }
 }

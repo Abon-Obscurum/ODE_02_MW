@@ -1,38 +1,38 @@
-package fhtw.form;
+package form;
+
+import java.util.TreeMap;
 
 public class Main {
     public static void main(String[] args) {
-        /* Array holds six shapes: two of each type */
-        int arrSize = 6;
-        Form[] arr = new Form[arrSize];
+        /* TreeMap sorts by key on its own, area is used as key */
+        TreeMap<Double, Form> formen = new TreeMap<>();
 
-        arr[0] = new Kreis(50);
-        arr[1] = new Kreis(100);
+        /* Two objects per class: one default, one with parameters */
+        Form kreisDefault    = new Kreis();
+        Form kreisParameter  = new Kreis(50);
 
-        arr[2] = new Quadrat(20);
-        arr[3] = new Quadrat(40);
+        Form quadratDefault   = new Quadrat();
+        Form quadratParameter = new Quadrat(20);
 
-        arr[4] = new GlDreieck(15);
-        arr[5] = new GlDreieck(30);
+        Form dreieckDefault   = new GlDreieck();
+        Form dreieckParameter = new GlDreieck(15);
 
-        for (int i = 0; i < arrSize; i++){
+        /* Key is the area, value is the shape itself */
+        formen.put(kreisDefault.flaeche(), kreisDefault);
+        formen.put(kreisParameter.flaeche(), kreisParameter);
+        formen.put(quadratDefault.flaeche(), quadratDefault);
+        formen.put(quadratParameter.flaeche(), quadratParameter);
+        formen.put(dreieckDefault.flaeche(), dreieckDefault);
+        formen.put(dreieckParameter.flaeche(), dreieckParameter);
 
-            switch (i){
-                case 0:
-                case 1:
-                    System.out.println((i + 1) + " Kreis");
-                    break;
-                case 2:
-                case 3:
-                    System.out.println((i + 1) + " Quadrat");
-                    break;
-                case 4:
-                case 5:
-                    System.out.println( (i + 1) + " GlDreieck");
-                    break;
-            }
-            ((Form) arr[i]).info();
-            System.out.printf("\n");
+        /* values() already comes in key order, small to big */
+        for (Form f : formen.values()) {
+            System.out.println(f.info());
         }
+
+        System.out.printf("\n");
+
+        /* lastEntry() gives the biggest key, no loop needed */
+        System.out.println(formen.lastEntry().getValue().info());
     }
 }

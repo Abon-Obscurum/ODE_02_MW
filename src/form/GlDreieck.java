@@ -1,10 +1,10 @@
-package fhtw.form;
+package form;
 
 /**
  * Equilateral triangle, defined by its side length.
  * All three sides are of equal length.
  */
-public class GlDreieck implements Form{
+public class GlDreieck extends Form {
 
     /** Seite in mm, defaults to 2mm*/
     private int seite = 2;
@@ -72,15 +72,14 @@ public class GlDreieck implements Form{
     }
 
     /**
-     * Prints area, perimeter and side to the console.
+     * Builds the info string of the triangle.
+     * Format: (Klassenname): (Seite in mm), (Fläche in mm²), (Fläche int in HEX), (Umfang in mm)
+     * @return info string of the triangle
      */
     @Override
-    public void info() {
-        double flaeche = flaeche();
-        double umfang  = umfang();
-        System.out.println("Fläche: " + flaeche + "mm²");
-        System.out.println("Umfang: " + umfang + "mm");
-        System.out.println("Seite: " + seite + "mm");
+    public String info() {
+        return "GlDreieck: " + seite + ", " + gerundet(flaeche())
+                + ", " + flaecheAlsHex() + ", " + gerundet(umfang());
     }
 
 }

@@ -1,9 +1,9 @@
-package fhtw.form;
+package form;
 
 /**
  * Circle, defined by its radius
  */
-public class Kreis implements Form {
+public class Kreis extends Form {
 
     /** Radius in mm, defaults to 2mm*/
     private int radius = 2;
@@ -71,14 +71,13 @@ public class Kreis implements Form {
     }
 
     /**
-     * Prints area, perimeter and radiuse to the console.
+     * Builds the info string of the circle.
+     * Format: (Klassenname): (Radius in mm), (Fläche in mm²), (Fläche int in HEX), (Umfang in mm)
+     * @return info string of the circle
      */
     @Override
-    public void info() {
-        double flaeche = flaeche();
-        double umfang  = umfang();
-        System.out.println("Fläche: " + flaeche + "mm²");
-        System.out.println("Umfang: " + umfang + "mm");
-        System.out.println("Radius: " + radius + "mm");
+    public String info() {
+        return "Kreis: " + radius + ", " + gerundet(flaeche())
+                + ", " + flaecheAlsHex() + ", " + gerundet(umfang());
     }
 }

@@ -1,6 +1,6 @@
-package fhtw.form;
+package form;
 
-public class Quadrat implements Form {
+public class Quadrat extends Form {
 
     /** Seite in mm, defaults to 2mm*/
     private int seite = 2;
@@ -68,14 +68,13 @@ public class Quadrat implements Form {
     }
 
     /**
-     * Prints area, perimeter and side to the console.
+     * Builds the info string of the square.
+     * Format: (Klassenname): (Seite in mm), (Fläche in mm²), (Fläche int in HEX), (Umfang in mm)
+     * @return info string of the square
      */
     @Override
-    public void info() {
-        double flaeche = flaeche();
-        double umfang  = umfang();
-        System.out.println("Fläche: " + flaeche + "mm²");
-        System.out.println("Umfang: " + umfang + "mm");
-        System.out.println("Seite: " + seite + "mm");
+    public String info() {
+        return "Quadrat: " + seite + ", " + gerundet(flaeche())
+                + ", " + flaecheAlsHex() + ", " + gerundet(umfang());
     }
 }
